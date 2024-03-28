@@ -9,9 +9,9 @@ jobs:
     steps:
       - checkout
 
-      # Install dependencies and activate virtual environment
+      # Install dependencies
       - run:
-          name: Install dependencies 
+          name: Install dependencies
           command: |
             pip install -r requirements.txt
 
@@ -23,11 +23,14 @@ jobs:
             echo 'export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY' >> $BASH_ENV
             source $BASH_ENV
 
-      # Deploy the application
+      # Run the tests
       - run:
-          name: Deploy application
+          name: Run tests
           command: |
-            python app.py
+            pytest tests/
+
+  deploy:
+    # Add deployment configuration here
 
 workflows:
   version: 2
