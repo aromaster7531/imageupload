@@ -14,8 +14,10 @@ jobs:
           name: Install dependencies
           command: |
             python -m venv venv
-            . venv/bin/activate
+            source venv/bin/activate  # Explicitly activate the virtual environment
             pip install -r requirements.txt
+            pip list  # Print out the list of installed packages
+
 
       # Set up AWS credentials
       - run:
