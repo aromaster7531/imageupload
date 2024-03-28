@@ -23,5 +23,5 @@ def test_upload_file_empty_filename(client):
     data = {'file': ''}
     response = client.post('/upload', data=data)
     assert response.status_code == 200
-    assert b'Invalid Filename' in response.data
+    assert b'File is empty' in response.data
 
