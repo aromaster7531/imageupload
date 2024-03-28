@@ -12,7 +12,7 @@ def client():
 def test_index(client):
     response = client.get('/', follow_redirects=True)  
     assert response.status_code == 200  
-    assert b'Please log in' in response.data  
+    assert b'<h1>Login</h1>' in response.data
 
 def test_upload_file_no_file(client):
     response = client.post('/upload')
