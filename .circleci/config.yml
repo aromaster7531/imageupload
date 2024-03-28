@@ -20,7 +20,7 @@ jobs:
       - run:
           name: Run tests
           command: |
-            pytest test_app.py
+            pytest -s test_app.py
 
 workflows:
   version: 2
