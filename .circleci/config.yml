@@ -11,10 +11,8 @@ jobs:
 
       # Install dependencies and activate virtual environment
       - run:
-          name: Install dependencies and activate virtual environment
+          name: Install dependencies 
           command: |
-            python -m venv venv
-            source venv/bin/activate || . venv/bin/activate
             pip install -r requirements.txt
 
       # Set up AWS credentials
