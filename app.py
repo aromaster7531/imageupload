@@ -1,12 +1,13 @@
 from flask import Flask, request, jsonify, render_template
 import boto3
+import os
 
 app = Flask(__name__)
 
 S3_BUCKET_NAME = 'imagebucketfile'
 S3_REGION = 'us-east-1'
-S3_ACCESS_KEY = 'FILL'
-S3_SECRET_KEY = 'FILL'
+S3_ACCESS_KEY = os.environ.get('AWS_ACCESS_KEY_ID')
+S3_SECRET_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 
 @app.route('/')
 def index():
