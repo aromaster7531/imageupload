@@ -3,21 +3,19 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/python:3.8  # Choose the appropriate Python version
+      - image: circleci/python:3.10  # Choose the appropriate Python version
     working_directory: ~/app
 
     steps:
       - checkout
 
-      # Install dependencies
+      # Install dependencies and activate virtual environment
       - run:
-          name: Install dependencies
+          name: Install dependencies and activate virtual environment
           command: |
             python -m venv venv
-            source venv/bin/activate  # Explicitly activate the virtual environment
+            source venv/bin/activate
             pip install -r requirements.txt
-            pip list  # Print out the list of installed packages
-
 
       # Set up AWS credentials
       - run:
@@ -31,7 +29,7 @@ jobs:
       - run:
           name: Deploy application
           command: |
-            python -u app.py
+            python app.py
 
 workflows:
   version: 2
