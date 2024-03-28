@@ -1,2 +1,2 @@
-flask==2.0.2
-boto3==1.18.23
+Flask
+boto3
