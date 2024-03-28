@@ -1,0 +1,43 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.8  # Choose the appropriate Python version
+    working_directory: ~/app
+
+    steps:
+      - checkout
+
+      # Install dependencies
+      - run:
+          name: Install dependencies
+          command: |
+            python -m venv venv
+            . venv/bin/activate
+            pip install -r requirements.txt
+
+      # Set up AWS credentials
+      - run:
+          name: Set up AWS credentials
+          command: |
+            echo 'export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID' >> $BASH_ENV
+            echo 'export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY' >> $BASH_ENV
+            source $BASH_ENV
+
+      # Run tests (if you have any)
+      # - run:
+      #     name: Run tests
+      #     command: pytest
+
+      # Deploy the application
+      - run:
+          name: Deploy application
+          command: |
+            python app.py
+
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build
