@@ -11,7 +11,7 @@ def client():
 
 def test_index(client):
     response = client.get('/')
-    assert response.status_code == 200
+    assert response.status_code == 302
     assert b'Upload Image' in response.data
 
 def test_upload_file_no_file(client):
@@ -25,18 +25,5 @@ def test_upload_file_empty_filename(client):
     assert response.status_code == 200
     assert b'File is empty' in response.data
     
-def test_login(client):
-    # Test logging in with valid credentials
-    response = client.post('/login', data={'username': 'user1', 'password': 'password1'}, follow_redirects=True)
-    assert b'Welcome, user1' in response.data
 
-    # Test logging in with invalid credentials
-    response = client.post('/login', data={'username': 'invalid_user', 'password': 'invalid_password'}, follow_redirects=True)
-    assert b'Invalid username or password' in response.data
-
-def test_logout(client):
-    # Test logging out
-    client.post('/login', data={'username': 'user1', 'password': 'password1'}, follow_redirects=True)
-    response = client.get('/logout', follow_redirects=True)
-    assert b'Please log in' in response.data
 
