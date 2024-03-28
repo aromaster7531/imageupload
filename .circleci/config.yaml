@@ -25,11 +25,6 @@ jobs:
             echo 'export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY' >> $BASH_ENV
             source $BASH_ENV
 
-      # Run tests (if you have any)
-      # - run:
-      #     name: Run tests
-      #     command: pytest
-
       # Deploy the application
       - run:
           name: Deploy application
